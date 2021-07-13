@@ -5,6 +5,15 @@ import { AiOutlineGoogle } from 'react-icons/ai';
 import {FaFacebookF} from 'react-icons/fa';
 
 const Signin = () => {
+    const [form, setForm] = React.useState({ "email": "", "password": "" })
+    const handleChange = (event) => {
+        let input = form;
+        input[event.target.name] = event.target.value;
+        setForm(input);
+    }
+    const handleSubmit =(event)=>{
+
+    }
     return (
         <div>
             <div className="container sign-in">
@@ -12,15 +21,15 @@ const Signin = () => {
                     <Card className="login-card" >
                         <div className="sign-form">
                             <div className="card-text m-3 mt-5"><h2>Welcome Back</h2></div>
-                            <Form>
+                            <Form onSumbit={(e) => handleSubmit(e)}>
                                 <Form.Group className="m-3 ">
                                     <Form.Label className="form-text">Email or username</Form.Label>
-                                    <Form.Control className="login-field" type="email"  />
+                                    <Form.Control className="login-field" value={form["email"]} onChange={(e) => handleChange(e)}type="email"  />
                                 </Form.Group>
 
                                 <Form.Group className="m-3 ">
                                     <Form.Label className="form-text">Enter Password</Form.Label>
-                                    <Form.Control className="login-field" type="password"  />
+                                    <Form.Control className="login-field" type="password" value={form["password"]} onChange={(e) => handleChange(e)} />
                                 </Form.Group>
                                 <div align="right " className="m-2"> 
                                     <a href="#" className="login-forget">Forget Password?</a>
