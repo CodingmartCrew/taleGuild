@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@300,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100,300&display=swap');
+.addstory{
+    width:60%;
+    margin:auto;
+    font-family: 'Merriweather Sans', sans-serif;
+    ::-webkit-input-placeholder { 
+        font-family: 'Merriweather Sans', sans-serif;
+        font-weight:bold;
+        font-size:25px;
+      }
+      ::-webkit-textarea-placeholder { 
+        font-family: 'Merriweather Sans', sans-serif;
+        font-weight:bold;
+        font-size:25px;
+      }
+      .story-content{
+        border:0px;
+        box-shadow:none;
+    }
+      .story-title{
+          border:0px;
+          box-shadow:none;
+      }
+      .categories:focus{
+          box-shadow:none;
+          border:1px solid #b57e40;
+      }
+      .categories:hover{
+        border:1px solid #b57e40;
+      }
+        .mt-15{
+    margin-top: 20vh;
+        }
+        .publish-btn{
+            background-color: #faf5f0;
+            box-shadow: 2px 2px 12px rgba(35,31,26,.08);
+            color:#b57e40;
+            font-weight:bold;
+            border:none;
+            width:10%;
+            float:right;
+        }
+        .publish-btn:hover{
+            background-color: white;
+        }
+        .label-text{
+            font-family: 'Lato', sans-serif;
+            font-weight:bold;
+        }
+       
+}

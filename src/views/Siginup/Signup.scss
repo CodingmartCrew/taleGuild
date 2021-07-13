@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@300&display=swap');
+.sign-up{
+    font-family: 'Merriweather Sans', sans-serif;
+    .login-card{
+        margin-top:20px;
+        width:45%;
+        background:#fafaf9;
+        box-shadow: 2px 2px 12px rgba(35,31,26,.08);
+    }
+    .login-contain{
+        display:flex;
+        align-items: center;
+        justify-content:center;
+    }
+    .sign-form{
+        width:80%;
+        margin-left:auto;
+        margin-right:auto;
+    }
+    .form-text{
+        font-size: 12px;
+    }
+    .btn-signin-main{
+        background-color: #b57e40;
+    }
+    .btn-signin-main:hover{
+        background-color: #8a5c28;
+    }
+    .login-forget{
+        text-decoration: none;
+        color:#b57e40;
+        font-size:13px;
+        font-weight: bold;
+    }
+    .login-forget:hover{
+        text-decoration: underline;
+        color:#8a5c28;
+    }
+ 
+    .agree-font{
+        font-size:13px;
+    }
+    .btn-signin{
+        background-color: #faf5f0;
+        box-shadow: 2px 2px 12px rgba(35,31,26,.08);
+    }
+    .btn-signin:hover{
+        background-color: white;
+    }
+    .icon{
+        color:#b57e40;
+    }
+}

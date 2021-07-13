@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@500&display=swap');
+.header{
+    font-family: 'Lato', sans-serif;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 10px;
+    background-color: #f1f1f1;
+    .icon{
+        font-size: 20px;
+        margin: 0 2px 2px 2px;
+    }
+    .content-left{
+        display: flex;
+        width: 33%;
+        .link{
+            padding: 0 15px;
+        }
+        .link:hover{
+            background-color: #ffffff;
+            border-radius: 2px;
+        }
+    }
+    .content-middle{
+        height: auto;
+        width: 33%;
+        .has-search{
+            position: relative;
+            top: 10px;
+            left: 30px;
+        }
+    }
+    .content-right{
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        width: 33%;
+        .primary{
+            font-weight: bold;
+            background-color: #b57e40;
+            color: #ffffff;
+            &:hover{
+                background-color: #b68341;
+            }
+        }
+        .secondary{
+            font-weight: bold;
+            background-color: #fdecdb;
+            color: #b68341;
+            &:hover{
+                background-color: #ffffff;
+            }
+        }
+        .btn-border{
+            border-radius: 5px;
+        }
+        .profileLogo{
+            border: none;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            font-weight: bold;
+            text-align: center;
+            vertical-align: middle;
+            font-size: 22px;
+            color: #ffffff;
+            border-radius: 50%;
+            background-color: #b57e40;
+            .subMenuItems{
+                width: 200px;
+                position: relative;
+                right: 150px;
+                top: 10px;
+                padding: 15px 15px 1px 10px;
+                background-color: #ffffff;
+                color: black;
+                line-height: normal;
+                font-size: 16px;
+                font-weight: 700;
+                text-align: left;
+                display: none;
+            }
+            &:focus{
+                text-decoration: none;
+                .subMenuItems{
+                    display: block;
+                }
+            }
+        }
+    }
+    .link{
+        width: fit-content;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        color: #847B71;
+        text-decoration: none;
+        margin: 10px 20px;
+    }
+    .active{
+        color: #b57e40;
+    }
+}

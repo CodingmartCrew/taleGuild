@@ -1,0 +1,27 @@
+.storyCard{
+    line-height: normal;
+    background-color: #fff;
+    box-shadow: rgb(206, 195, 195) 1px 1px 5px 1px ;
+    padding: 10px;
+    .head{
+        .profileCard{
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            img{
+                width: 40px;
+                margin: 10px;
+            }
+        }
+    }
+    .body{
+        img{
+            width: 100%;
+        }
+    }
+    .footer{
+        .icon{
+            cursor: pointer;
+        }
+    }
+}
