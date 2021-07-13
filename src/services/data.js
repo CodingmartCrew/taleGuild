@@ -260,11 +260,33 @@ const sampleStories=[
     },
 ];
 
+const sampleUser={
+    name:'ragavn',
+    nickName:'nick ragavn',
+    image: 'https://api.taleguild.com/uploads/thumbnail_wizard_of_taleguild_avatar_0bacb785f6.png',
+    stories: 3,
+    followers:0,
+    followings:2
+}
+
+const mystories=[
+    {
+        logo:'https://api.taleguild.com/uploads/small_taleguild_epic_fantasy_img_01_4113f1e58c.png',
+        title:'Sample title',
+    },
+    {
+        logo:'https://api.taleguild.com/uploads/small_taleguild_epic_fantasy_img_01_4113f1e58c.png',
+        title:'Sample title 2',
+    }
+]
+
 export {
     categories,
     languages,
     rightSectionTitle,
     midSectionTitle,
     filterTitle,
-    sampleStories
+    sampleStories,
+    sampleUser,
+    mystories
 };

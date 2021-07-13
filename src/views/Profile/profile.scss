@@ -1,0 +1,20 @@
+
+.profile{
+    width: 50vw;
+    margin-top: 13.2vh;
+    background-color: #f1f1f1;
+    .head{
+        display: flex;
+        align-items: center;
+        img{
+         width: 150px;
+        }
+    }
+    .middle{
+        width: 50vw;
+    }
+    .active{
+        width:fit-content;
+        border-bottom: 4px dotted #b57e40;
+    }
+}

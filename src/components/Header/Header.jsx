@@ -78,11 +78,11 @@ const Header = () => {
                             <button className='profileLogo' >
                                 {initial}
                                 <div className='subMenuItems'>
-                                    <p>My Profile</p>
+                                    <p onClick={()=>{history.push('/show/user')}}>My Profile</p>
                                     <p>Drafts</p>
                                     <p>Saved Stories</p>
                                     <p>Account Setting</p>
-                                    <p>Logout</p>
+                                    <p onClick={()=>{history.push('/login')}}>Logout</p>
                                 </div>
                             </button>
                         </div>

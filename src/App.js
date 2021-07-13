@@ -5,6 +5,8 @@ import Signup from "./views/Siginup/Signup";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from "./components/Header/Header";
 import Story from "./components/Story/Story";
+import Feed from "./views/Feed/Feed";
+import Profile from "./views/Profile/Profile";
 
 
 function App() {
@@ -17,6 +19,9 @@ function App() {
           <Route path="/login" exact component={Signin} />
           <Route path="/register" exact component={Signup} />
           <Route path="/story" exact component={Story} />
+          <Route path="/feed" exact component={Feed} />
+          <Route path="/show/:user" exact component={Profile} />
+          <Route path="*" exact component={()=><h1>Page Not fount</h1>} />
         </div>
       </Switch>
     </Router>

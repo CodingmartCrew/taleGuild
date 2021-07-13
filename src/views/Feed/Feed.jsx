@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import Filter from '../../components/categories/Filter'
+import StorySmallCard from '../../components/common/storysmallCard/StorySmallCard';
 import Title from '../../components/common/titles/Title';
 import StoryPreviewCard from '../../components/storyPreviewCard/StoryPreviewCard';
-import StorySmallCard from '../../components/common/storysmallCard/StorySmallCard'; 
 import {categories, filterTitle, languages, midSectionTitle, mystories, rightSectionTitle, sampleStories} from '../../services/data';
-import "./Home.scss";
-const Home = () => {
+import "../Home/Home.scss";
+const Feed = () => {
     const [leftActive, setLeftActive] = useState(filterTitle[0])
     const [middleActive, setMiddleActive] = useState(midSectionTitle[0])
     const [rightActive, setRightActive] = useState(rightSectionTitle[0])
@@ -55,4 +55,4 @@ const Home = () => {
     )
 }
 
-export default Home
+export default Feed

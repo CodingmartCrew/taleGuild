@@ -5,6 +5,7 @@ import { FaFacebookF } from 'react-icons/fa';
 import "./Signup.scss"
 
 const Signup = () => {
+    
     return (
         <div className='mt-15'>
             <div className="container sign-up " >

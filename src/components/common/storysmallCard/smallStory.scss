@@ -1,0 +1,13 @@
+.smallTitleCard{
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+    img{
+        width: 50px;
+        border-radius: 10%;
+        margin: 0 10px;
+    }
+    h6{
+        margin: 0 10px;
+    }
+}
