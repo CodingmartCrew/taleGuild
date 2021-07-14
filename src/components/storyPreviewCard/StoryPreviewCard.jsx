@@ -9,12 +9,12 @@ import FavoriteOutlinedIcon from '@material-ui/icons/FavoriteOutlined';
 import './storyCard.scss';
 
 const StoryPreviewCard = ({ story }) => {
-    const [liked, setLiked] = useState(false);
-    const [likes, setLikes] = useState(2);
+    const [liked, setLiked] = useState(true);
+    const [likes, setLikes] = useState(story?.like || 0);
     const [saved, setSaved] = useState(false);
-    const [saves, setSaves] = useState(4);
-    const views = 4;
-    const comments = 5;
+    const [saves, setSaves] = useState(0);
+    const views = 1;
+    const comments = 0;
     const [user, setUser] = useState(null);
     let history = useHistory();
 
@@ -48,9 +48,9 @@ const StoryPreviewCard = ({ story }) => {
                 <span className="m-1 h6" >{story?.postcategory}</span>
             </div>
             <div className="footer text-secondary m-2 d-flex justify-content-between">
-                <div className="icon" onDoubleClick={()=>{
+                <div className="icon" onClick={()=>{
                     setLiked(!liked)
-                    setLikes(liked?likes+1:likes-1)
+                    setLikes(liked ?likes+1:(likes!==0 && likes-1))
                     }}>
                     {
                        liked ? <FavoriteBorderRoundedIcon/> : <FavoriteOutlinedIcon className='text-danger' />

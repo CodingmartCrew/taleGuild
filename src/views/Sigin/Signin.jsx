@@ -1,26 +1,26 @@
 import React from 'react'
 import { Card, Form, Button } from 'react-bootstrap'
 import "./signin.scss";
-import { AiOutlineGoogle } from 'react-icons/ai';
-import {FaFacebookF} from 'react-icons/fa';
 import { useHistory } from 'react-router';
 import { useState } from 'react';
 import axios from 'axios';
 import { backend_url } from '../../services/urls';
+import { validateEmail } from '../../services/methods';
 
 const Signin = ({setSigned}) => {
     let history = useHistory();
     const [form, setForm] = React.useState({ "email": "", "password": "" })
     const [errors, setErrors] = useState({});
     const handleChange=(event,field)=>{
-        setForm({
+        event.target.value && setForm({
             ...form,
             [field]: event.target.value,
         })
     }
     const handleSubmit = async ()=>{
-        if(form.email && form.password){
-            if(form.email.split('@').length===2){
+        setErrors();
+        if(form?.email && form?.password){
+            if(validateEmail(form?.email)){
                 try{
                     await axios.post(`${backend_url}/login`,form)
                     .then((res)=>{
@@ -31,13 +31,15 @@ const Signin = ({setSigned}) => {
                     })
                 }catch(err){
                     console.log(err);
+                    setErrors({
+                        'invalid':'Incorrect Email or Password ',
+                    });
                 }
 
             }else{
-
-            setErrors({
-                'email':'Wrong format',
-            });
+                setErrors({
+                    'email':'Wrong format',
+                });
             }
         }else{
             if(!form.email && !form.password){
@@ -67,24 +69,25 @@ const Signin = ({setSigned}) => {
                             <Form>
                                 <Form.Group className="m-3 ">
                                     <Form.Label className="form-text">Email or username</Form.Label>
-                                    <Form.Control className="login-field"  value={form.email} onChange={(e) => {
+                                    <Form.Control className="login-field"  value={form?.email} onChange={(e) => {
                                         handleChange(e,"email")
                                     }} type="email"  />
-                                    { <p className='text-danger'>{errors.email}</p>}
+                                    { <p className='text-danger'>{errors?.email}</p>}
                                 </Form.Group>
 
                                 <Form.Group className="m-3 ">
                                     <Form.Label className="form-text">Enter Password</Form.Label>
-                                    <Form.Control className="login-field" type="password"  value={form.password}  onChange={(e) => {
+                                    <Form.Control className="login-field" type="password"  value={form?.password}  onChange={(e) => {
                                         handleChange(e,"password")
 
                                     }} />
-                                    { <p className='text-danger'>{errors.password}</p>}
+                                    { <p className='text-danger'>{errors?.password}</p>}
 
                                 </Form.Group>
                                 <div align="right " className="m-2"> 
                                     <p className="login-forget">Forget Password?</p>
                                 </div>
+                                { <p className='text-danger'>{errors?.invalid}</p>}
                                 <Button variant="primary" type="submit"
                                  className="p-2 m-2 btn-signin-main"
                                   style={{width:"100%",border:"none"}}
@@ -98,16 +101,8 @@ const Signin = ({setSigned}) => {
                                 <div align="center" className="m-3">
                                     <p style={{color:"#6c757d" , fontSize:"13px"}}>OR</p>
                                 </div>
-                                <Button variant="primary" type="submit" className="p-2 m-2 btn-signin" style={{width:"100%",border:"none"}}>
-                                <AiOutlineGoogle className="icon"/> &nbsp;
-                                <b style={{color:"#b57e40" ,fontSize:"12px"}}> Sign in with Google</b>
-                                </Button>
-                                <Button variant="primary" type="submit" className="p-2 m-2 btn-signin" style={{width:"100%",border:"none"}}>
-                                <FaFacebookF className="icon" value={{size:"2em"}}/>&nbsp;
-                                   <b style={{color:"#b57e40",fontSize:"12px" ,fontWeight:"bold"}}> Sign in with Facebook</b>
-                                </Button>
                                 <div  className="m-2"> 
-                                    <span className="login-forget">Don’t have an account? Sign up now.</span>
+                                    <span className="login-forget" onClick={()=>{history.push('/register')}}>Don’t have an account? Sign up now.</span>
                                 </div>
                             </Form>
                         </div>

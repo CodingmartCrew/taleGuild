@@ -1,16 +1,16 @@
 import { React, useState } from 'react'
 import { Card, Form, Button } from 'react-bootstrap'
-import { AiOutlineGoogle } from 'react-icons/ai';
-import { FaFacebookF } from 'react-icons/fa';
 import { useHistory } from 'react-router';
 import axios from "axios";
 import "./Signup.scss"
 import { backend_url } from '../../services/urls';
+import { validateEmail } from '../../services/methods';
 
-const Signup = ({ signed, setSigned }) => {
+const Signup = () => {
     let history = useHistory();
     const [form, setForm] = useState({"username":"","email":'',"password":''})
     const [status, setStatus] = useState();
+    const [error, setError] = useState();
     const handleChange = (event, field) => {
         setForm({
             ...form,
@@ -20,25 +20,26 @@ const Signup = ({ signed, setSigned }) => {
 
     const handleSubmit = async () => {
         console.log(form);
+        setError();
         if(form.username && form.email && form.password){
-           try{
-               await axios.post(`${backend_url}/register`,form)
-           .then((response)=>{
-               console.log(response);
-               setStatus('Created successfully')
-               history.push("/login");
-           })
-           } catch{
-               setStatus("Email Already exist")
-           }
+            if(validateEmail(form?.email)){
+                try{
+                    await axios.post(`${backend_url}/register`,form)
+                    .then((response)=>{
+                        console.log(response);
+                        setStatus('Created successfully')
+                        history.push("/login");
+                    })
+                } catch{
+                    setError("Email Already exist")
+                }
+            }else{ 
+                setError("Wrong email format")
+            }
         }
         else{
-            alert('Fill all the fields')
+            setError('Fill all the fields')
         }
-
-        // console.log(signed);
-        // setSigned(true);
-        // history.push('/login');
     }
     return (
         <div className='mt-15'>
@@ -49,6 +50,7 @@ const Signup = ({ signed, setSigned }) => {
                             <div className="card-text m-3 mt-5">
                                 <h2>Join our guild of writers and storytellers</h2>
                                 <h5 className='text-success'>{status}</h5>
+                                <h5 className='text-danger'>{error}</h5>
                             </div>
                             <Form>
                                 <Form.Group className="m-3 ">
@@ -90,16 +92,8 @@ const Signup = ({ signed, setSigned }) => {
                                 <div align="center" className="m-3">
                                     <p style={{ color: "#6c757d", fontSize: "13px" }}>OR</p>
                                 </div>
-                                <Button variant="primary" type="submit" className="p-2 m-2 btn-signin" style={{ width: "100%", border: "none" }}>
-                                    <AiOutlineGoogle className="icon" /> &nbsp;
-                                    <b style={{ color: "#b57e40", fontSize: "12px" }}> Sign in with Google</b>
-                                </Button>
-                                <Button variant="primary" type="submit" className="p-2 m-2 btn-signin" style={{ width: "100%", border: "none" }}>
-                                    <FaFacebookF className="icon" value={{ size: "2em" }} />&nbsp;
-                                    <b style={{ color: "#b57e40", fontSize: "12px", fontWeight: "bold" }}> Sign in with Facebook</b>
-                                </Button>
                                 <div className="m-2">
-                                    <p className="login-forget">Already have an account? Sign in now.</p>
+                                    <p className="login-forget"  onClick={()=>{history.push('/login')}}>Already have an account? Sign in now.</p>
                                 </div>
                                 <span className="m-2" style={{ float: "left" }}>
                                     <p className="login-forget">Terms of Service</p>

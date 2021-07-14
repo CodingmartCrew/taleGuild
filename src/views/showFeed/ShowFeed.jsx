@@ -19,7 +19,7 @@ const ShowFeed = () => {
             })
         }
         fetchData();
-    })
+    },[id])
     return (
         <div>
             <div className="w-50 text-center mx-auto">
