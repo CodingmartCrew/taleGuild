@@ -4,7 +4,7 @@ import Filter from '../../components/categories/Filter'
 import StorySmallCard from '../../components/common/storysmallCard/StorySmallCard';
 import Title from '../../components/common/titles/Title';
 import StoryPreviewCard from '../../components/storyPreviewCard/StoryPreviewCard';
-import {categories, filterTitle, languages, midSectionTitle, mystories, rightSectionTitle, sampleStories} from '../../services/data';
+import {categories, filterTitle, languages, midSectionTitle, mystories, rightSectionTitle } from '../../services/data';
 import { backend_url } from '../../services/urls';
 import "../Home/Home.scss";
 const Feed = () => {
@@ -14,12 +14,15 @@ const Feed = () => {
     const [storyFeed, setStoryFeed] = useState(null);
 
 
-        useEffect(async () => {
-            setStoryFeed('Loading')
+        useEffect(() => {
+            async function fetchData(){
+                setStoryFeed('Loading')
             await axios.get(`${backend_url}/api/getallpost`).then((res)=>{
                 console.log(res.data);
                 setStoryFeed(res.data.filter((data)=>data.email === JSON.parse(localStorage.getItem('tale_user_details'))?.email))
             })
+            }
+            fetchData();
         },[])
 
     return (

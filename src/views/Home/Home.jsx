@@ -3,7 +3,7 @@ import Filter from '../../components/categories/Filter'
 import Title from '../../components/common/titles/Title';
 import StoryPreviewCard from '../../components/storyPreviewCard/StoryPreviewCard';
 import StorySmallCard from '../../components/common/storysmallCard/StorySmallCard'; 
-import {categories, filterTitle, languages, midSectionTitle, mystories, rightSectionTitle, sampleStories} from '../../services/data';
+import {categories, filterTitle, languages, midSectionTitle, mystories, rightSectionTitle } from '../../services/data';
 import "./Home.scss";
 import axios from 'axios';
 import { backend_url } from '../../services/urls';
@@ -11,16 +11,19 @@ const Home = () => {
     const [leftActive, setLeftActive] = useState(filterTitle[0])
     const [middleActive, setMiddleActive] = useState(midSectionTitle[0])
     const [rightActive, setRightActive] = useState(rightSectionTitle[0])
-    const [stories, setStories] = useState(sampleStories);
     const [storyFeed, setStoryFeed] = useState(null);
 
 
-        useEffect(async () => {
-            setStoryFeed('Loading')
-            await axios.get(`${backend_url}/api/getallpost`).then((res)=>{
-                console.log(res.data);
-                setStoryFeed(res.data)
-            })
+        useEffect(() => {
+
+            async function fetchData(){
+                setStoryFeed('Loading');
+                await axios.get(`${backend_url}/api/getallpost`).then((res)=>{
+                    console.log(res.data);
+                    setStoryFeed(res.data)
+                })
+            }
+            fetchData();
         },[])
 
     return (

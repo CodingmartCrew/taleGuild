@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React from 'react'
 import { Card, Form, Button } from 'react-bootstrap'
 import "./signin.scss";
 import { AiOutlineGoogle } from 'react-icons/ai';
@@ -8,7 +8,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import { backend_url } from '../../services/urls';
 
-const Signin = ({signed, setSigned}) => {
+const Signin = ({setSigned}) => {
     let history = useHistory();
     const [form, setForm] = React.useState({ "email": "", "password": "" })
     const [errors, setErrors] = useState({});
@@ -83,7 +83,7 @@ const Signin = ({signed, setSigned}) => {
 
                                 </Form.Group>
                                 <div align="right " className="m-2"> 
-                                    <a href="#" className="login-forget">Forget Password?</a>
+                                    <p className="login-forget">Forget Password?</p>
                                 </div>
                                 <Button variant="primary" type="submit"
                                  className="p-2 m-2 btn-signin-main"
@@ -107,7 +107,7 @@ const Signin = ({signed, setSigned}) => {
                                    <b style={{color:"#b57e40",fontSize:"12px" ,fontWeight:"bold"}}> Sign in with Facebook</b>
                                 </Button>
                                 <div  className="m-2"> 
-                                    <a href="#" className="login-forget">Don’t have an account? Sign up now.</a>
+                                    <span className="login-forget">Don’t have an account? Sign up now.</span>
                                 </div>
                             </Form>
                         </div>

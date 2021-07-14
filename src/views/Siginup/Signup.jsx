@@ -99,13 +99,13 @@ const Signup = ({ signed, setSigned }) => {
                                     <b style={{ color: "#b57e40", fontSize: "12px", fontWeight: "bold" }}> Sign in with Facebook</b>
                                 </Button>
                                 <div className="m-2">
-                                    <a href="#" className="login-forget">Already have an account? Sign in now.</a>
+                                    <p className="login-forget">Already have an account? Sign in now.</p>
                                 </div>
                                 <span className="m-2" style={{ float: "left" }}>
-                                    <a href="#" className="login-forget">Terms of Service</a>
+                                    <p className="login-forget">Terms of Service</p>
                                 </span>
                                 <span className="m-2 " style={{ float: "right" }}>
-                                    <a href="#" className="login-forget">Privacy Policy</a>
+                                    <p className="login-forget">Privacy Policy</p>
                                 </span>
 
                             </Form>

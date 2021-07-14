@@ -13,15 +13,14 @@ const StoryPreviewCard = ({ story }) => {
     const [likes, setLikes] = useState(2);
     const [saved, setSaved] = useState(false);
     const [saves, setSaves] = useState(4);
-    const [views, setviews] = useState(4);
-    const [comments, setComments] = useState(4);
+    const views = 4;
+    const comments = 5;
     const [user, setUser] = useState(null);
     let history = useHistory();
 
     useEffect(() => {
-        console.log(story);
         setUser(JSON.parse(localStorage.getItem('tale_user_details')))
-    }, [])
+    }, [localStorage.getItem('tale_user_details')])
 
     const Profile=()=>{
         return <div className="profileCard" onClick={()=>history.push(`/feed/${story.id}`)}>
@@ -41,7 +40,7 @@ const StoryPreviewCard = ({ story }) => {
                 <Profile />
             </div>
             <div className="body text-secondary"  onClick={()=>history.push(`/feed/${story.id}`)}>
-                <img src={story?.postimageurl} alt="image" />
+                <img src={story?.postimageurl} alt="i" />
                 <h5 className='m-1 text-dark'>{story?.posttitle} </h5> 
                 {/* {
                     category.map((data,ind)=><span className="m-1" key={ind}>{data}</span>)

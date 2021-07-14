@@ -10,15 +10,18 @@ const ShowFeed = () => {
     let {id} = useParams();
     const [storyFeed, setStoryFeed] = useState(null);
 
-    useEffect(async () => {
-        setStoryFeed('Loading')
-        await axios.get(`${backend_url}/api/getpostbyid/${id}`).then((res)=>{
-            console.log(res.data);
-            setStoryFeed(res.data)
-        })
-    },[])
+    useEffect(() => {
+        async function fetchData(){
+            setStoryFeed('Loading')
+            await axios.get(`${backend_url}/api/getpostbyid/${id}`).then((res)=>{
+                console.log(res.data);
+                setStoryFeed(res.data)
+            })
+        }
+        fetchData();
+    })
     return (
-        <div className='pointer'>
+        <div>
             <div className="w-50 text-center mx-auto">
                 <StoryPreviewCard story={storyFeed} />
                 <h5>{storyFeed?.postcontent}</h5>

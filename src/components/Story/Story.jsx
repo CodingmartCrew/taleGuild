@@ -5,7 +5,8 @@ import './Story.scss';
 import axios from "axios";
 import { backend_url } from "../../services/urls";
 import { useHistory } from "react-router";
-const Story = ({ }) => {
+
+const Story = () => {
     let history = useHistory();
     const [form, setForm] = useState({   
         "posttitle": " ",
@@ -22,7 +23,7 @@ const Story = ({ }) => {
             ...form,
             'email':JSON.parse(localStorage.getItem('tale_user_details'))?.email,
         })
-    }, [])
+    },[localStorage.getItem('tale_user_details')])
 
     const handleChange=(event,field)=>{
         setForm({
@@ -65,11 +66,12 @@ const Story = ({ }) => {
                             }} >
                             {
                                 categories.map((data) => {
-                                    if (data.name != "ALL") {
+                                    if (data.name !== "ALL") {
                                         return (
                                             <option value={data.name}>{data.name}</option>
                                         )
                                     }
+                                    return 0;
                                 })
                             }
                         </Form.Control>
@@ -81,11 +83,12 @@ const Story = ({ }) => {
                         }} >
                             {
                                 languages.map((data) => {
-                                    if (data.name != "ALL") {
+                                    if (data.name !== "ALL") {
                                         return (
                                             <option value={data.name}>{data.name}</option>
                                         )
                                     }
+                                    return 0;
                                 })
                             }
                         </Form.Control>

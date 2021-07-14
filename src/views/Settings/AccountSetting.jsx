@@ -1,12 +1,20 @@
-import {React,useState} from 'react'
+import { useEffect } from 'react';
+import {React, useState} from 'react'
 import { Card, Form, Button } from 'react-bootstrap'
 import "../Siginup/Signup.scss";
 
 const AccountSetting = () => {
+
+    const [userData, setuserData] = useState();
+
     const handleSubmit =()=>{
         alert("updated");
-        // setSigned(true);
     }
+
+    useEffect(() => {
+        setuserData(JSON.parse(localStorage.getItem('tale_user_details')));
+    }, [])
+
     return (
         <div className='mt-15'>
             <div className="container sign-up " >
@@ -19,12 +27,12 @@ const AccountSetting = () => {
                             <Form>
                                 <Form.Group className="m-3 ">
                                     <Form.Label className="form-text">Username</Form.Label>
-                                    <Form.Control className="login-field" type="text" />
+                                    <Form.Control value={userData?.username} className="login-field" type="text" />
                                 </Form.Group>
 
                                 <Form.Group className="m-3 ">
                                     <Form.Label className="form-text">Email Address</Form.Label>
-                                    <Form.Control className="login-field" type="email" />
+                                    <Form.Control value={userData?.email} className="login-field" type="email" />
                                 </Form.Group>
                                 <Form.Group className="m-3">
                                     <Form.Label className="form-text">Theams</Form.Label>

@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from 'react';
-import { useHistory, useParams } from 'react-router';
+import { useParams } from 'react-router';
 import { midSectionTitle, sampleUser,sampleStories } from '../../services/data';
 import Title from '../../components/common/titles/Title';
 import StoryPreviewCard from '../../components/storyPreviewCard/StoryPreviewCard';
@@ -10,11 +10,12 @@ const Profile = () => {
     
     const [data, setData] = useState(sampleUser);
     const [middleActive, setMiddleActive] = useState(midSectionTitle[0])
-    const [stories, setStories] = useState(sampleStories);
+    const [stories, setStories] = useState();
 
     useEffect(() => {
-        setData(sampleUser)
-    })
+        setData(sampleUser);
+        setStories(sampleStories);
+    },[])
 
     console.log(user);
     return (

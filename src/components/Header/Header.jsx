@@ -62,7 +62,7 @@ const Header = ({signed, setSigned}) => {
                    </> :
                    <>
                         <div>
-                            <a href='https://www.buymeacoffee.com/taleguildstory' target='_blank' className='link'>
+                            <a href='https://www.buymeacoffee.com/taleguildstory' target='_blank' rel="noreferrer" className='link'>
                                 <button className="btn secondary btn-border">
                                         <FreeBreakfastRoundedIcon className='icon' />
                                             Buy us a coffee
