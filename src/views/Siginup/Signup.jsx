@@ -55,7 +55,7 @@ const Signup = () => {
                             <Form>
                                 <Form.Group className="m-3 ">
                                     <Form.Label className="form-text">Enter Username</Form.Label>
-                                    <Form.Control className="login-field" type="text" name="username" value={form.username} onChange={(e) => {
+                                    <Form.Control className="login-field" type="text" name="username"  onChange={(e) => {
                                         handleChange(e, "username")
 
                                     }} />
@@ -63,7 +63,7 @@ const Signup = () => {
 
                                 <Form.Group className="m-3 ">
                                     <Form.Label className="form-text">Email Address</Form.Label>
-                                    <Form.Control className="login-field" type="email" name="email" value={form.email} onChange={(e) => {
+                                    <Form.Control className="login-field" type="email" name="email"  onChange={(e) => {
                                         handleChange(e, "email")
 
                                     }} />
@@ -71,7 +71,7 @@ const Signup = () => {
 
                                 <Form.Group className="m-3 ">
                                     <Form.Label className="form-text">Enter Password</Form.Label>
-                                    <Form.Control className="login-field" type="password" name="password" value={form.password} onChange={(e) => {
+                                    <Form.Control className="login-field" type="password" name="password" onChange={(e) => {
                                         handleChange(e, "password")
 
                                     }} />

@@ -19,6 +19,7 @@ const Signin = ({setSigned}) => {
     }
     const handleSubmit = async ()=>{
         setErrors();
+        console.log(form);
         if(form?.email && form?.password){
             if(validateEmail(form?.email)){
                 try{
@@ -31,28 +32,34 @@ const Signin = ({setSigned}) => {
                     })
                 }catch(err){
                     console.log(err);
+                    setForm({ "email": "", "password": "" })
                     setErrors({
                         'invalid':'Incorrect Email or Password ',
                     });
                 }
 
             }else{
+                setForm({ "email": "", "password": "" })
                 setErrors({
                     'email':'Wrong format',
                 });
             }
         }else{
+            setForm({ "email": "", "password": "" })
             if(!form.email && !form.password){
+                setForm({ "email": "", "password": "" })
                 setErrors({
                     'email':'Enter email',
                     'password':'Enter Password',
                 });
             }
-            if(!form.password){
+            else if(!form.password){
+                setForm({ "email": "", "password": "" })
                 setErrors({
                     'password':'Enter Password',
                 });
             }else{
+                setForm({ "email": "", "password": "" })
                 setErrors({
                     'email':'Enter email',
                 });
