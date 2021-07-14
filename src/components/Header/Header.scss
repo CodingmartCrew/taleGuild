@@ -2,6 +2,8 @@
 .header{
     font-family: 'Lato', sans-serif;
     display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
     padding: 10px;
@@ -79,6 +81,12 @@
                 font-weight: 700;
                 text-align: left;
                 display: none;
+            }
+            .subMenuItems p{
+                padding: 4px;
+            }
+            .subMenuItems p:hover{
+                background-color: #f8f4f4;
             }
             &:focus{
                 text-decoration: none;

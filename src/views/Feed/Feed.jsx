@@ -1,17 +1,26 @@
-import React, { useState } from 'react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
 import Filter from '../../components/categories/Filter'
 import StorySmallCard from '../../components/common/storysmallCard/StorySmallCard';
 import Title from '../../components/common/titles/Title';
 import StoryPreviewCard from '../../components/storyPreviewCard/StoryPreviewCard';
 import {categories, filterTitle, languages, midSectionTitle, mystories, rightSectionTitle, sampleStories} from '../../services/data';
+import { backend_url } from '../../services/urls';
 import "../Home/Home.scss";
 const Feed = () => {
     const [leftActive, setLeftActive] = useState(filterTitle[0])
     const [middleActive, setMiddleActive] = useState(midSectionTitle[0])
     const [rightActive, setRightActive] = useState(rightSectionTitle[0])
-    const [stories, setStories] = useState(sampleStories);
+    const [storyFeed, setStoryFeed] = useState(null);
 
-    console.log(stories);
+
+        useEffect(async () => {
+            setStoryFeed('Loading')
+            await axios.get(`${backend_url}/api/getallpost`).then((res)=>{
+                console.log(res.data);
+                setStoryFeed(res.data.filter((data)=>data.email === JSON.parse(localStorage.getItem('tale_user_details'))?.email))
+            })
+        },[])
 
     return (
         <div className="main">
@@ -34,7 +43,7 @@ const Feed = () => {
                     </div>
                     <div>
                         {
-                            stories.map((story)=> <StoryPreviewCard story={story} /> )
+                           storyFeed==='Loading' ? 'Loading...': storyFeed?.map((story)=> <StoryPreviewCard story={story} /> )
                         }
                     </div>
                 </div>

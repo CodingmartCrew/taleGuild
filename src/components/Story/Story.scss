@@ -33,16 +33,17 @@
     margin-top: 20vh;
         }
         .publish-btn{
-            background-color: #faf5f0;
+            background-color: #b57e40;
             box-shadow: 2px 2px 12px rgba(35,31,26,.08);
-            color:#b57e40;
             font-weight:bold;
             border:none;
             width:10%;
             float:right;
+            color: #ffffff;
         }
         .publish-btn:hover{
-            background-color: white;
+            background-color: #f5d1a9;
+            color: #b57e40;
         }
         .label-text{
             font-family: 'Lato', sans-serif;

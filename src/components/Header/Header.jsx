@@ -8,22 +8,22 @@ import './Header.scss';
 import SearchBar from '../common/searchBar/SearchBar';
 import { TvRounded } from '@material-ui/icons';
 
-const Header = () => {
+const Header = ({signed, setSigned}) => {
     const [active,setActive]=useState('/');
-    const [showSubMenu, setShowSubMenu] = useState(false)
-    const isSignnedIn = true;
-    const initial = 'R';
+    const [user,setUser]=useState();
     const handleChange=(value)=>{
         setActive(value)
     }
 
     let history = useHistory();
 
-    console.log(history);
-
     useEffect(() => {
         setActive(history.location.pathname)
     }, [history.location])
+
+    useEffect(() => {
+         setUser(JSON.parse(localStorage.getItem('tale_user_details')));
+    }, [])
 
     return (
         <div className="header navbar fixed-top">
@@ -32,7 +32,7 @@ const Header = () => {
                     <Logo className="icon"/>
                 </Link>
                 {
-                    isSignnedIn && <>
+                    signed && <>
                         <Link onClick={()=>handleChange(false)} className={`${active==='/feed' && 'active'} link`} to="/feed" >
                         <HomeOutlinedIcon  className="icon"  />Feed
                         </Link>
@@ -47,7 +47,7 @@ const Header = () => {
             </div>
             <div className="content-right">
                {
-                   !isSignnedIn ?
+                   !signed ?
                    <>
                         <div>
                             <Link className='link' to="/login">
@@ -76,13 +76,17 @@ const Header = () => {
                         </div>
                         <div>
                             <button className='profileLogo' >
-                                {initial}
+                                {user?.username && user.username.charAt(0)}
                                 <div className='subMenuItems'>
                                     <p onClick={()=>{history.push('/show/user')}}>My Profile</p>
                                     <p>Drafts</p>
                                     <p>Saved Stories</p>
-                                    <p>Account Setting</p>
-                                    <p onClick={()=>{history.push('/login')}}>Logout</p>
+                                    <p onClick={()=>{history.push('/accountsetting')}}>Account Setting</p>
+                                    <p onClick={()=>{
+                                        history.push('/login')
+                                        localStorage.removeItem("tale_user_details");
+                                        setSigned(false)
+                                        }}>Logout</p>
                                 </div>
                             </button>
                         </div>

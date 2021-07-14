@@ -1,7 +1,6 @@
 import React from 'react'
 import "./Filter.scss";
-const Filter = ({ content }) => {
-    console.log(content);
+const Filter = ({ content }) => { 
     return (
         <div>
             <div className="filter">
