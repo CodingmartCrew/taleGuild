@@ -9,6 +9,7 @@ import Feed from "./views/Feed/Feed";
 import Profile from "./views/Profile/Profile";
 import AccountSetting from "./views/Settings/AccountSetting";
 import { useEffect, useState } from "react";
+import ShowFeed from "./views/showFeed/ShowFeed";
 
 function App() {
   const [signed, setSigned] = useState(false);
@@ -27,6 +28,7 @@ function App() {
           <Route path="/register" exact component={()=><Signup  signed={signed} setSigned={setSigned} />} />
           <Route path="/story" exact component={Story} />
           <Route path="/feed" exact component={Feed} />
+          <Route path="/feed/:id" exact component={ShowFeed} />
           <Route path="/show/:user" exact component={Profile} />
           <Route path="/accountsetting" exact component={AccountSetting} />
         </div>

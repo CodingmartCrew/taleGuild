@@ -24,7 +24,7 @@ const StoryPreviewCard = ({ story }) => {
     }, [])
 
     const Profile=()=>{
-        return <div className="profileCard" onClick={()=>history.push(`/story/${story.id}`)}>
+        return <div className="profileCard" onClick={()=>history.push(`/feed/${story.id}`)}>
            <div>
                 <img className='bdr-50' src={story?.postimageurl} alt="i" />
             </div> 
@@ -36,11 +36,11 @@ const StoryPreviewCard = ({ story }) => {
     }
 
     return (
-        <div className="storyCard w-75 mx-auto my-3">
+        <div className="storyCard w-75 mx-auto my-3 pointer">
             <div className="head">
                 <Profile />
             </div>
-            <div className="body text-secondary">
+            <div className="body text-secondary"  onClick={()=>history.push(`/feed/${story.id}`)}>
                 <img src={story?.postimageurl} alt="image" />
                 <h5 className='m-1 text-dark'>{story?.posttitle} </h5> 
                 {/* {
