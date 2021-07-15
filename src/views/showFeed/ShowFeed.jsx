@@ -26,9 +26,9 @@ const ShowFeed = () => {
     },[id])
     return (
         <div>
-            <div className="w-50 text-center mx-auto">
+            <div className="w-50 text-wrap text-center mx-auto">
                 <StoryPreviewCard story={storyFeed} />
-                <h5>{storyFeed?.postcontent}</h5>
+                <p className='h5'>{storyFeed?.postcontent}</p>
             </div>
         </div>
     )

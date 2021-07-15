@@ -21,7 +21,6 @@ const StoryPreviewCard = ({ story }) => {
     let history = useHistory();
 
     useEffect(() => {
-        console.log(story);
         setLikes(story?.postLike || 0);
         setUser(JSON.parse(localStorage.getItem('tale_user_details')))
     }, [localStorage.getItem('tale_user_details'),story])

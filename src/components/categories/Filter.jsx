@@ -1,6 +1,6 @@
 import React from 'react'
 import "./Filter.scss";
-const Filter = ({ content }) => { 
+const Filter = ({ content, setCurrentFilter }) => { 
     return (
         <div>
             <div className="filter">
@@ -10,7 +10,7 @@ const Filter = ({ content }) => {
                             return  (
                                 <div className="label-hover" key={ind}>
                                 {/* {data.logo && < img className="text-lowercase" src={data.logo} alt='icon' />} */}
-                                <p className="elements" > {data.name}</p>
+                                <p className="elements" onClick={()=>{setCurrentFilter(data.name)}} > {data.name}</p>
                             </div>)
                         })
                     }

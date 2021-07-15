@@ -12,18 +12,30 @@ const Feed = () => {
     const [middleActive, setMiddleActive] = useState(midSectionTitle[0])
     const [rightActive, setRightActive] = useState(rightSectionTitle[0])
     const [storyFeed, setStoryFeed] = useState(null);
+    const [storyFeedAll, setStoryFeedAll] = useState(null);
+    const [currentFilter, setCurrentFilter] = useState('ALL');
 
 
         useEffect(() => {
+            console.log('Feed page');
+            setStoryFeed('Loading')
             async function fetchData(){
-                setStoryFeed('Loading')
-            await axios.get(`${backend_url}/api/getallpost`).then((res)=>{
-                console.log(res.data);
+            await axios.get(`${backend_url}/api/getallpost`).then((res)=>{ 
+                setStoryFeedAll(res.data.filter((data)=>data.email === JSON.parse(localStorage.getItem('tale_user_details'))?.email))
                 setStoryFeed(res.data.filter((data)=>data.email === JSON.parse(localStorage.getItem('tale_user_details'))?.email))
             })
             }
             fetchData();
         },[])
+
+        useEffect(() => {
+            setCurrentFilter('ALL');
+        }, [leftActive])
+
+        useEffect(() => {
+            (currentFilter === 'ALL') ? setStoryFeed(storyFeedAll):
+            setStoryFeed(storyFeedAll.filter((post)=> (leftActive === 'Languages') ? post.postlanguage  === currentFilter : post.postcategory === currentFilter))
+        }, [currentFilter,storyFeedAll])
 
     return (
         <div className="main">
@@ -35,7 +47,7 @@ const Feed = () => {
                         }
                     </div>
                     <div className="overflowscroll">
-                        <Filter content={ leftActive=== filterTitle[0] ? categories : languages } />
+                        <Filter setCurrentFilter={setCurrentFilter}  content={ leftActive=== filterTitle[0] ? categories : languages } />
                     </div>
                 </div>
                 <div className="middle m-2">
@@ -46,7 +58,7 @@ const Feed = () => {
                     </div>
                     <div>
                         {
-                           storyFeed==='Loading' ? 'Loading...': storyFeed?.map((story)=> <StoryPreviewCard story={story} /> )
+                           storyFeed ==='Loading' ? 'Loading...': !storyFeed?.length ? 'No stories found': storyFeed?.map((story)=> <StoryPreviewCard story={story} /> )
                         }
                     </div>
                 </div>

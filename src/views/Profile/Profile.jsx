@@ -4,20 +4,27 @@ import { midSectionTitle, sampleUser,sampleStories } from '../../services/data';
 import Title from '../../components/common/titles/Title';
 import StoryPreviewCard from '../../components/storyPreviewCard/StoryPreviewCard';
 import './profile.scss';
+import { backend_url } from '../../services/urls';
+import axios from "axios";
 
 const Profile = () => {
-    let {user} = useParams();
     
     const [data, setData] = useState(sampleUser);
     const [middleActive, setMiddleActive] = useState(midSectionTitle[0])
-    const [stories, setStories] = useState();
+    const [stories, setStories] = useState(null);
 
     useEffect(() => {
         setData(sampleUser);
-        setStories(sampleStories);
+        setStories('Loading')
+        async function fetchData(){
+        await axios.get(`${backend_url}/api/getallpost`).then((res)=>{ 
+            setStories(res.data.filter((data)=>data.email === JSON.parse(localStorage.getItem('tale_user_details'))?.email))
+        })
+        }
+        fetchData();
     },[])
 
-    console.log(user);
+
     return (
         <div className='m-16 profile mx-auto'>
                 <div className='head'>
@@ -37,12 +44,12 @@ const Profile = () => {
                 <div className="middle my-2 px-4">
                     <div className="d-flex">
                         {
-                            midSectionTitle.map((data)=><Title active={middleActive} setActive={setMiddleActive} label={data}  />)
+                            midSectionTitle && midSectionTitle.map((data)=><Title active={middleActive} setActive={setMiddleActive} label={data}  />)
                         }
                     </div>
                     <div>
                         {
-                            stories.map((story)=> <StoryPreviewCard story={story} /> )
+                           (stories==='Loading')? 'Loading...': stories?.map((story)=> <StoryPreviewCard story={story} /> )
                         }
                     </div>
                 </div>
