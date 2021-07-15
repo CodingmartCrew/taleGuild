@@ -1,5 +1,4 @@
 import React, { useState,useEffect } from 'react';
-import { useParams } from 'react-router';
 import { midSectionTitle, sampleUser,sampleStories } from '../../services/data';
 import Title from '../../components/common/titles/Title';
 import StoryPreviewCard from '../../components/storyPreviewCard/StoryPreviewCard';
@@ -9,6 +8,8 @@ import axios from "axios";
 
 const Profile = () => {
     
+    let user = JSON.parse(localStorage.getItem('tale_user_details'));
+
     const [data, setData] = useState(sampleUser);
     const [middleActive, setMiddleActive] = useState(midSectionTitle[0])
     const [stories, setStories] = useState(null);
@@ -18,7 +19,7 @@ const Profile = () => {
         setStories('Loading')
         async function fetchData(){
         await axios.get(`${backend_url}/api/getallpost`).then((res)=>{ 
-            setStories(res.data.filter((data)=>data.email === JSON.parse(localStorage.getItem('tale_user_details'))?.email))
+            setStories(res.data.filter((data)=>data.email === user?.email))
         })
         }
         fetchData();
@@ -32,7 +33,7 @@ const Profile = () => {
                         <img src={data.image} alt="profile" />
                     </div>
                     <div className='w-100 text-center'>
-                        <h4>{data.name}</h4>
+                        <h4>{user.username}</h4>
                         <div className="d-flex  justify-content-evenly w-100">
                             <p>{data.stories}<br />stories</p>
                             <p>{data.followers}<br />followers</p>
