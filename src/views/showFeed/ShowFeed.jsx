@@ -13,10 +13,14 @@ const ShowFeed = () => {
     useEffect(() => {
         async function fetchData(){
             setStoryFeed('Loading')
-            await axios.get(`${backend_url}/api/getpostbyid/${id}`).then((res)=>{
-                console.log(res.data);
-                setStoryFeed(res.data)
-            })
+            try{
+                await axios.get(`${backend_url}/api/getpostbyid/${id}`).then((res)=>{
+                    console.log(res.data);
+                    setStoryFeed(res.data)
+                })
+            }catch(err){
+                console.log(err);
+            }
         }
         fetchData();
     },[id])

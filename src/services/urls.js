@@ -1,2 +1,2 @@
-const backend_url = "https://taleguildclone.herokuapp.com";
+const backend_url = "https://talebackend.herokuapp.com";
 export {backend_url}

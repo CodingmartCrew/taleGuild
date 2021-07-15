@@ -7,10 +7,12 @@ import FavoriteBorderRoundedIcon from '@material-ui/icons/FavoriteBorderRounded'
 import VisibilityOutlinedIcon from '@material-ui/icons/VisibilityOutlined';
 import FavoriteOutlinedIcon from '@material-ui/icons/FavoriteOutlined';
 import './storyCard.scss';
+import { backend_url } from '../../services/urls';
+import axios from 'axios';
 
 const StoryPreviewCard = ({ story }) => {
     const [liked, setLiked] = useState(true);
-    const [likes, setLikes] = useState(story?.like || 0);
+    const [likes, setLikes] = useState();
     const [saved, setSaved] = useState(false);
     const [saves, setSaves] = useState(0);
     const views = 1;
@@ -19,11 +21,22 @@ const StoryPreviewCard = ({ story }) => {
     let history = useHistory();
 
     useEffect(() => {
+        console.log(story);
+        setLikes(story?.postLike || 0);
         setUser(JSON.parse(localStorage.getItem('tale_user_details')))
-    }, [localStorage.getItem('tale_user_details')])
+    }, [localStorage.getItem('tale_user_details'),story])
+
+        async function updateLike(){
+            console.log('likes req');
+           await axios.put(`${backend_url}/api/updatelike/${story?.id}`,{"postlike":likes})
+           .then((res)=>{
+               setLikes(res.data)
+               console.log(res);
+           })
+        }
 
     const Profile=()=>{
-        return <div className="profileCard" onClick={()=>history.push(`/feed/${story.id}`)}>
+        return <div className="profileCard" onClick={()=>history.push(`/feed/${story?.id}`)}>
            <div>
                 <img className='bdr-50' src={story?.postimageurl} alt="i" />
             </div> 
@@ -51,6 +64,7 @@ const StoryPreviewCard = ({ story }) => {
                 <div className="icon" onClick={()=>{
                     setLiked(!liked)
                     setLikes(liked ?likes+1:(likes!==0 && likes-1))
+                    updateLike();
                     }}>
                     {
                        liked ? <FavoriteBorderRoundedIcon/> : <FavoriteOutlinedIcon className='text-danger' />

@@ -15,6 +15,7 @@ const Story = () => {
         "postlanguage": languages[1].name,   
         "postdescription": " ",
         "email": '',
+        "postlike":0,
         "postimageurl": "https://api.taleguild.com/uploads/small_mike-erskine-S_VbdMTsdiA-unsplash_(1)_9cbdd29a1b.jpeg",
     })
 
